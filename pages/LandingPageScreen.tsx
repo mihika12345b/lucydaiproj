@@ -38,6 +38,9 @@ const LandingPageScreen = ({ navigation }) => {
           <TouchableOpacity onPress={() => navigateTo('Login')}>
             <Text style={styles.panelItem}>Sign Out</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigateTo('LandingPagePieChart')}>
+            <Text style={styles.panelItem}>PieChart</Text>
+          </TouchableOpacity>
         </View>
       )}
       {/* Add content for the landing page here */}

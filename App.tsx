@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from './pages/LoginScreen';
 import LandingPageScreen from './pages/LandingPageScreen';
+import LandingPagePieChart from './pages/LandingPagePieChart';
 import ProjectsScreen from './pages/ProjectsScreen';
 import NotificationsScreen from './pages/NotificationsScreen'; // Import the Notifications screen
 import MilestonesScreen from './pages/MilestonesScreen'; // Import the Milestones screen
@@ -20,6 +21,7 @@ const App = () => {
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
         <Stack.Screen name="Milestones" component={MilestonesScreen} />
         <Stack.Screen name="Reports" component={ReportsScreen} />
+        <Stack.Screen name="LandingPagePieChart" component={LandingPagePieChart} />
         {/* Define other screens if needed */}
       </Stack.Navigator>
     </NavigationContainer>
