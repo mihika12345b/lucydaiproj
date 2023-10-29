@@ -1,26 +1,45 @@
 // LandingPageScreen.tsx
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from 'react-native-chart-kit';
+import {Rect} from 'react-native-svg';
 
-const LandingPageScreen = ({ navigation }) => {
+const LandingPageScreen = ({navigation}) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
   };
 
-  const navigateTo = (screenName) => {
+  const navigateTo = screenName => {
     navigation.navigate(screenName);
     setIsPanelOpen(false);
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.notificationButton} onPress={() => navigateTo('Notifications')}>
+      <TouchableOpacity
+        style={styles.notificationButton}
+        onPress={() => navigateTo('Notifications')}>
         <Text style={styles.notificationButtonText}>Notifications</Text>
       </TouchableOpacity>
+
       <Text style={styles.title}>LUCYD</Text>
       <Text style={styles.pageTitle}>Welcome to the Landing Page</Text>
+
       <TouchableOpacity style={styles.panelToggle} onPress={togglePanel}>
         <Text style={styles.toggleText}>☰</Text>
       </TouchableOpacity>
@@ -41,6 +60,58 @@ const LandingPageScreen = ({ navigation }) => {
         </View>
       )}
       {/* Add content for the landing page here */}
+      <View>
+        <Text>Productivity Chart</Text>
+        <LineChart
+          data={{
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+              {
+                data: [
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                ],
+              },
+            ],
+          }}
+          width={Dimensions.get('window').width} // from react-native
+          height={220}
+          yAxisLabel=""
+          yAxisSuffix="%"
+          yAxisInterval={1} // optional, defaults to 1
+          chartConfig={{
+            backgroundColor: '#e26a00',
+            backgroundGradientFrom: '#fb8c00',
+            backgroundGradientTo: '#0F0B56',
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16,
+            },
+            propsForDots: {
+              r: '6',
+              strokeWidth: '2',
+              stroke: '#ffa726',
+            },
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16,
+          }}
+        />
+      </View>
     </View>
   );
 };
