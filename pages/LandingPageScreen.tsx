@@ -54,6 +54,9 @@ const LandingPageScreen = ({navigation}) => {
           <TouchableOpacity onPress={() => navigateTo('Milestones')}>
             <Text style={styles.panelItem}>Milestones</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigateTo('Messaging')}>
+            <Text style={styles.panelItem}>Messaging</Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigateTo('Reports')}>
             <Text style={styles.panelItem}>Reports</Text>
           </TouchableOpacity>

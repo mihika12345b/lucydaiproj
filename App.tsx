@@ -7,7 +7,8 @@ import ProjectsScreen from './pages/ProjectsScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
 import MilestonesScreen from './pages/MilestonesScreen';
 import ReportsScreen from './pages/ReportsScreen';
-import CalendarScreen from './pages/CalendarScreen'; // Import the Calendar screen
+import CalendarScreen from './pages/CalendarScreen';
+import MessagingScreen from './pages/MessagingScreen'; // Import the Messaging screen
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const App = () => {
         <Stack.Screen name="Milestones" component={MilestonesScreen} />
         <Stack.Screen name="Reports" component={ReportsScreen} />
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="Messaging" component={MessagingScreen} />
         {/* Define other screens if needed */}
       </Stack.Navigator>
     </NavigationContainer>
