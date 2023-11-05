@@ -1,5 +1,4 @@
-// LandingPageScreen.tsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,26 +8,42 @@ import {
 } from 'react-native';
 import {
   LineChart,
-  BarChart,
-  PieChart,
   ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
 } from 'react-native-chart-kit';
-import {Rect} from 'react-native-svg';
 
-const LandingPageScreen = ({navigation}) => {
+const LandingPageScreen = ({ navigation }) => {
+  // State
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
+  // Event Handlers
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
   };
 
-  const navigateTo = screenName => {
+  const navigateTo = (screenName) => {
     navigation.navigate(screenName);
     setIsPanelOpen(false);
   };
 
+  // Chart Configuration
+  const chartConfigure = {
+    backgroundColor: '#e26a00',
+    backgroundGradientFrom: '#fb8c00',
+    backgroundGradientTo: '#0F0B56',
+    decimalPlaces: 2,
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    style: {
+      borderRadius: 16,
+    },
+    propsForDots: {
+      r: '6',
+      strokeWidth: '2',
+      stroke: '#ffa726',
+    },
+  };
+
+  // Rendering
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -43,29 +58,17 @@ const LandingPageScreen = ({navigation}) => {
       <TouchableOpacity style={styles.panelToggle} onPress={togglePanel}>
         <Text style={styles.toggleText}>☰</Text>
       </TouchableOpacity>
+
       {isPanelOpen && (
         <View style={styles.panel}>
-          <TouchableOpacity onPress={() => navigateTo('Projects')}>
-            <Text style={styles.panelItem}>Projects</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Calendar')}>
-            <Text style={styles.panelItem}>Calendar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Milestones')}>
-            <Text style={styles.panelItem}>Milestones</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Messaging')}>
-            <Text style={styles.panelItem}>Messaging</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Reports')}>
-            <Text style={styles.panelItem}>Reports</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Login')}>
-            <Text style={styles.panelItem}>Sign Out</Text>
-          </TouchableOpacity>
+          {['Projects', 'Calendar', 'Milestones', 'Messaging', 'Reports', 'Sign Out'].map((item, index) => (
+            <TouchableOpacity key={index} onPress={() => navigateTo(item)}>
+              <Text style={styles.panelItem}>{item}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       )}
-      {/* Add content for the landing page here */}
+
       <View>
         <Text>Productivity Chart</Text>
         <LineChart
@@ -73,55 +76,39 @@ const LandingPageScreen = ({navigation}) => {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [
               {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
+                data: Array.from({ length: 12 }, () => Math.random() * 100),
               },
             ],
           }}
-          width={Dimensions.get('window').width} // from react-native
+          width={Dimensions.get('window').width}
           height={220}
           yAxisLabel=""
           yAxisSuffix="%"
-          yAxisInterval={1} // optional, defaults to 1
-          chartConfig={{
-            backgroundColor: '#e26a00',
-            backgroundGradientFrom: '#fb8c00',
-            backgroundGradientTo: '#0F0B56',
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: '6',
-              strokeWidth: '2',
-              stroke: '#ffa726',
-            },
-          }}
+          yAxisInterval={1}
+          chartConfig={chartConfigure}
           bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
+          style={styles.chart}
+        />
+
+        <ProgressChart
+          data={{
+            labels: ['Active', 'Completed', 'Ended'],
+            data: [0.4, 0.6, 0.8],
           }}
+          width={Dimensions.get('window').width}
+          height={220}
+          strokeWidth={16}
+          radius={32}
+          chartConfig={chartConfigure}
+          hideLegend={false}
+          style={styles.chart}
         />
       </View>
     </View>
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -169,6 +156,10 @@ const styles = StyleSheet.create({
   panelItem: {
     fontSize: 18,
     marginBottom: 10,
+  },
+  chart: {
+    marginVertical: 8,
+    borderRadius: 16,
   },
 });
 
