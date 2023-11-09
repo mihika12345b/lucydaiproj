@@ -9,7 +9,7 @@ const profileIcon = require('../assets/icons/profile.png');
 const calendarIcon = require('../assets/icons/calendar.png');
 const messageIcon = require('../assets/icons/message.png');
 
-const LandingPageScreen = () => {
+const LandingPageScreen = ( {navigation} ) => {
   return (
     <View style={styles.container}>
       <BackButton />
@@ -72,13 +72,13 @@ const LandingPageScreen = () => {
         />
       </View>
       <View style={styles.iconBar}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { navigation.navigate('DrawerNav', { screen: 'LandingPage' }); }}>
           <Image source={profileIcon} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { navigation.navigate('DrawerNav', { screen: 'Calendar' }); }}>
           <Image source={calendarIcon} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { navigation.navigate('DrawerNav', { screen: 'Messages' }); }}>
           <Image source={messageIcon} style={styles.icon} />
         </TouchableOpacity>
       </View>

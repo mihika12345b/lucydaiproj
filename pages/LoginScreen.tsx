@@ -19,12 +19,7 @@ const LoginScreen = ({ navigation }) => {
         />
         <Button
           title="Sign In"
-          onPress={() => {
-            // Handle sign-in logic here
-
-            // Navigate to the landing page
-            navigation.navigate('DrawerNav', { screen: 'LandingPage' });
-          }}
+          onPress={() => { navigation.navigate('DrawerNav', { screen: 'LandingPage' }); }}
         />
         <View style={styles.linksContainer}>
           <TouchableOpacity>

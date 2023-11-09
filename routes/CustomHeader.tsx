@@ -12,14 +12,14 @@ const CustomHeader = () => {
       {/* Left Button: Toggles the Drawer */}
       <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
         {/* <Icon name="menu" size={30} /> */}
-        <Text style={{fontSize: 25, fontWeight: 'bold',}}>☰</Text>
+        <Text style={{fontSize: 25, fontWeight: 'bold', paddingTop: 10}}>☰</Text>
       </TouchableOpacity>
 
       {/* Middle Title: "LUCYD" */}
-      <Text style={styles.headerTitle}>L U C Y D</Text>
+      <Text style={styles.headerTitle}>  L U C Y D</Text>
 
       {/* Right Button: Placeholder for future functionality */}
-      <TouchableOpacity onPress={() => {/* Placeholder for future functionality */}}>
+      <TouchableOpacity onPress={() => { navigation.navigate('DrawerNav', { screen: 'Notifications' }); }}>
       <Image source={notificationIcon} style={styles.icon} />
       </TouchableOpacity>
     </View>
@@ -48,11 +48,13 @@ const styles = StyleSheet.create({
     // You can add more styling to position or decorate your header
   },
   headerTitle: {
+    paddingTop: 10,
     fontSize: 20,
     fontWeight: 'bold',
     // You can add more styling to your title
   },
   icon: {
+    marginTop: 10,
     width: 30,
     height: 30,
   },
