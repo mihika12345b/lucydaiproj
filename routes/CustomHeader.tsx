@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons'; // I don't know how to install this
+
+const notificationIcon = require('../assets/icons/notification.png');
 
 const CustomHeader = () => {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ const CustomHeader = () => {
 
       {/* Right Button: Placeholder for future functionality */}
       <TouchableOpacity onPress={() => {/* Placeholder for future functionality */}}>
-        <Icon name="ellipsis-vertical" size={30} />
+      <Image source={notificationIcon} style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
@@ -50,6 +51,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     // You can add more styling to your title
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
 });
 

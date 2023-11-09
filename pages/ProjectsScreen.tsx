@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign'; // Import AntDesign from react-native-vector-icons
+import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable, Image, StyleSheet } from 'react-native';
 import styles from '../styles';
 
 import BackButton from '../routes/BackButton';
+
+const searchIcon = require('../assets/icons/search.png');
+const filterIcon = require('../assets/icons/filter.png');
 
 
 const projects = [
@@ -62,7 +64,7 @@ const ProjectsScreen = () => {
     <View style={styles.container}>
       <BackButton/>
       <View style={styles.searchBarContainer}>
-        <Icon name="search1" size={20} color="black" style={styles.searchIcon} />
+        <Image source={searchIcon} style={{ width: 25, height: 25 }} />
         <TextInput
           style={styles.searchBar}
           placeholder="Search"
@@ -73,7 +75,7 @@ const ProjectsScreen = () => {
       <View style={styles.topBar}>
         <Text style={styles.heading}>ALL PROJECTS</Text>
         <TouchableOpacity style={styles.filterIconContainer} onPress={handleFilterPress}>
-          <Icon name="filter" size={24} color="black" style={styles.filterIcon} />
+          <Image source={filterIcon} style={{ width: 25, height: 25 }} />
         </TouchableOpacity>
       </View>
       <Modal
