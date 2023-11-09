@@ -2,13 +2,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import BackButton from '../routes/BackButton';
-
 
 const NotificationsScreen = () => {
   return (
     <View style={styles.container}>
-      <BackButton/>
       <View style={styles.notification}>
         <Text style={styles.notificationTitle}>Begin Task</Text>
         <Text style={styles.notificationSubtitle}>G-101: Stake Lot</Text>

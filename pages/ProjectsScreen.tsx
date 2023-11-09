@@ -3,8 +3,6 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable } f
 import Icon from 'react-native-vector-icons/AntDesign'; // Import AntDesign from react-native-vector-icons
 import styles from '../styles';
 
-import BackButton from '../routes/BackButton';
-
 
 const projects = [
   { name: 'Abbot Kinney', percentCompletion: 25 },
@@ -60,7 +58,6 @@ const ProjectsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BackButton/>
       <View style={styles.searchBarContainer}>
         <Icon name="search1" size={20} color="black" style={styles.searchIcon} />
         <TextInput

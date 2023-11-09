@@ -2,13 +2,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import BackButton from '../routes/BackButton';
-
 
 const ReportsScreen = () => {
   return (
     <View style={styles.container}>
-      <BackButton/>
       <Text style={styles.title}>Reports</Text>
       {/* Add your reports content here */}
     </View>
