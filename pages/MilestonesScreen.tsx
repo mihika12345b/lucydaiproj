@@ -2,9 +2,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import BackButton from '../routes/BackButton';
+
+
 const MilestonesScreen = () => {
   return (
     <View style={styles.container}>
+      <BackButton />
       <Text style={styles.title}>Milestones</Text>
       {/* Add your milestones content here */}
     </View>

@@ -15,57 +15,15 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from 'react-native-chart-kit';
-import {Rect} from 'react-native-svg';
 
-const LandingPageScreen = ({navigation}) => {
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
+import BackButton from '../routes/BackButton';
 
-  const togglePanel = () => {
-    setIsPanelOpen(!isPanelOpen);
-  };
 
-  const navigateTo = screenName => {
-    navigation.navigate(screenName);
-    setIsPanelOpen(false);
-  };
+const LandingPageScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.notificationButton}
-        onPress={() => navigateTo('Notifications')}>
-        <Text style={styles.notificationButtonText}>Notifications</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.title}>LUCYD</Text>
-      <Text style={styles.pageTitle}>Welcome to the Landing Page</Text>
-
-      <TouchableOpacity style={styles.panelToggle} onPress={togglePanel}>
-        <Text style={styles.toggleText}>☰</Text>
-      </TouchableOpacity>
-      {isPanelOpen && (
-        <View style={styles.panel}>
-          <TouchableOpacity onPress={() => navigateTo('Projects')}>
-            <Text style={styles.panelItem}>Projects</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Calendar')}>
-            <Text style={styles.panelItem}>Calendar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Milestones')}>
-            <Text style={styles.panelItem}>Milestones</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Messaging')}>
-            <Text style={styles.panelItem}>Messaging</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Reports')}>
-            <Text style={styles.panelItem}>Reports</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('Login')}>
-            <Text style={styles.panelItem}>Sign Out</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      {/* Add content for the landing page here */}
+      <BackButton />
       <View>
         <Text>Productivity Chart</Text>
         <LineChart

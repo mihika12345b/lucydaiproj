@@ -3,6 +3,9 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable } f
 import Icon from 'react-native-vector-icons/AntDesign'; // Import AntDesign from react-native-vector-icons
 import styles from '../styles';
 
+import BackButton from '../routes/BackButton';
+
+
 const projects = [
   { name: 'Abbot Kinney', percentCompletion: 25 },
   { name: 'Ashton Drive', percentCompletion: 50 },
@@ -14,7 +17,7 @@ const projects = [
   { name: 'Hudson Yard Apartments', percentCompletion: 4 },
 ];
 
-const Progress = () => {
+const ProjectsScreen = () => {
   const [searchText, setSearchText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [filterType, setFilterType] = useState('all');
@@ -57,6 +60,7 @@ const Progress = () => {
 
   return (
     <View style={styles.container}>
+      <BackButton/>
       <View style={styles.searchBarContainer}>
         <Icon name="search1" size={20} color="black" style={styles.searchIcon} />
         <TextInput
@@ -119,4 +123,4 @@ const Progress = () => {
   );
 };
 
-export default Progress;
+export default ProjectsScreen;

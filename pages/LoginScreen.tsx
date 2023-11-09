@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
             // Handle sign-in logic here
 
             // Navigate to the landing page
-            navigation.navigate('LandingPage');
+            navigation.navigate('DrawerNav', { screen: 'LandingPage' });
           }}
         />
         <View style={styles.linksContainer}>
