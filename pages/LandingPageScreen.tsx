@@ -29,16 +29,7 @@ const LandingPageScreen = ({navigation}) => {
             <Text style={styles.chartTitleLeft}>Productivity</Text>
             <LineChart
               data={{
-                labels: [
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'Jun',
-                  'Jul',
-                  'Aug',
-                ],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',],
                 datasets: [{data: [20, 45, 28, 80, 99, 43, 56, 77]}],
               }}
               width={screenWidth - 60} // subtracting margin from the total width
