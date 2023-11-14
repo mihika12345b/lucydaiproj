@@ -1,10 +1,10 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-// import Ionicons from 'react-native-vector-icons/Ionicons';
+//import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import LandingPageScreen from '../pages/LandingPageScreen';
-import ProjectsScreen from '../pages/ProjectsScreen';
+import ProjectsScreen from '../pages/Progress';
 import MessagingScreen from '../pages/MessagingScreen';
 import CalendarScreen from '../pages/CalendarScreen';
 import MilestonesScreen from '../pages/MilestonesScreen';

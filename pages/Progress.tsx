@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable, Image, StyleSheet } from 'react-native';
-import styles from '../styles';
-
-import BackButton from '../routes/BackButton';
-
-const searchIcon = require('../assets/icons/search.png');
-const filterIcon = require('../assets/icons/filter.png');
-
+import { View, Text, TextInput, FlatList, TouchableOpacity, Modal, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import styles from '../styles'; // Update the path as necessary
 
 const projects = [
   { name: 'Abbot Kinney', percentCompletion: 25 },
@@ -19,7 +14,7 @@ const projects = [
   { name: 'Hudson Yard Apartments', percentCompletion: 4 },
 ];
 
-const ProjectsScreen = () => {
+const Progress = () => {
   const [searchText, setSearchText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [filterType, setFilterType] = useState('all');
@@ -32,12 +27,12 @@ const ProjectsScreen = () => {
     setModalVisible(!modalVisible);
   };
 
-  const handleFilterOptionPress = (filterType: string) => {
+  const handleFilterOptionPress = (filterType) => {
     setFilterType(filterType);
     setModalVisible(false);
   };
 
-  const getPercentColor = (percent: number) => {
+  const getPercentColor = (percent) => {
     if (percent <= 25) {
       return styles.percentRed;
     } else if (percent <= 75) {
@@ -46,6 +41,8 @@ const ProjectsScreen = () => {
       return styles.percentGreen;
     }
   };
+
+  const navigation = useNavigation();
 
   let displayedProjects = filteredProjects;
   if (filterType === 'complete') {
@@ -62,9 +59,9 @@ const ProjectsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BackButton/>
+      {/* Search bar */}
       <View style={styles.searchBarContainer}>
-        <Image source={searchIcon} style={{ width: 25, height: 25 }} />
+        <Text style={styles.searchIcon}>🔍</Text>
         <TextInput
           style={styles.searchBar}
           placeholder="Search"
@@ -72,19 +69,20 @@ const ProjectsScreen = () => {
           onChangeText={setSearchText}
         />
       </View>
+      {/* Top bar with heading and filter button */}
       <View style={styles.topBar}>
         <Text style={styles.heading}>ALL PROJECTS</Text>
         <TouchableOpacity style={styles.filterIconContainer} onPress={handleFilterPress}>
-          <Image source={filterIcon} style={{ width: 25, height: 25 }} />
+          <Text style={styles.filterIcon}>Filter</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Modal for filters */}
       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={() => setModalVisible(!modalVisible)}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
@@ -106,23 +104,26 @@ const ProjectsScreen = () => {
           </View>
         </View>
       </Modal>
+      {/* List of projects */}
       <FlatList
         data={displayedProjects.sort((a, b) => a.name.localeCompare(b.name))}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <View style={styles.projectItem}>
-            <View style={styles.projectContainer}>
-              <Text style={styles.projectName}>{item.name}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('ProgressDetails', { project: item })}>
+            <View style={styles.projectItem}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectName}>{item.name}</Text>
+              </View>
+              <Text style={[styles.percentCompletion, getPercentColor(item.percentCompletion)]}>
+                {item.percentCompletion}% complete
+              </Text>
+              <View style={styles.separator} />
             </View>
-            <Text style={[styles.percentCompletion, getPercentColor(item.percentCompletion)]}>
-              {item.percentCompletion}% complete
-            </Text>
-            <View style={styles.separator} />
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
   );
 };
 
-export default ProjectsScreen;
+export default Progress;
