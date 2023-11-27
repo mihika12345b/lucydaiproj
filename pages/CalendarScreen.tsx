@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
-
 const CalendarScreen = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [isAddEventModalVisible, setIsAddEventModalVisible] = useState(false);

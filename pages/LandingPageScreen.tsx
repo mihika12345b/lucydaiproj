@@ -11,14 +11,15 @@ import {
 } from 'react-native';
 import {LineChart, ProgressChart} from 'react-native-chart-kit';
 import BackButton from '../routes/BackButton';
+import {useNavigation} from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 
 const profileIcon = require('../assets/icons/profile.png');
 const calendarIcon = require('../assets/icons/calendar.png');
 const messageIcon = require('../assets/icons/message.png');
-
-const LandingPageScreen = ({navigation}) => {
+const LandingPageScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <SafeAreaView style={{flex: 1}}>
