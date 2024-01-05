@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
-import {View, Text, Button, TouchableOpacity, Modal, Alert} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, TouchableOpacity, Modal } from 'react-native';
 import Slider from '@react-native-community/slider';
 import styles from '../styles';
 
 const ProgressDetails = () => {
   const [tasks, setTasks] = useState([
-    {name: 'Task 1', progress: 0, status: 'Waiting'},
-    {name: 'Task 2', progress: 0, status: 'Waiting'},
-    {name: 'Task 3', progress: 0, status: 'Waiting'},
+    { name: 'Basic Building / Project Information', progress: 0, status: 'Waiting' },
+    { name: 'Real Estate - Routing Centroid Identified', progress: 0, status: 'Waiting' },
+    { name: 'Real Estate - LT Approval of Project / Initiative', progress: 0, status: 'Waiting' },
+    { name: 'Real Estate Search - Start Search Date', progress: 0, status: 'Waiting' },
+    { name: 'Real Estate Search - New Space Identified', progress: 0, status: 'Waiting' },
+    { name: 'Real Estate Search - Proposal Submitted', progress: 0, status: 'Waiting' },
+    { name: 'Lease - Negotiations', progress: 0, status: 'Waiting' },
+    { name: 'Lease - Execution', progress: 0, status: 'Waiting' },
+    { name: 'Design - Office Layout', progress: 0, status: 'Waiting' },
   ]);
 
   const [selectedTask, setSelectedTask] = useState(null);
@@ -50,7 +56,7 @@ const ProgressDetails = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>My Tasks</Text>
+      <Text style={styles.heading}>Project Progress</Text>
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
           <Button title="Begin" onPress={() => handleBegin(selectedTask)} />
